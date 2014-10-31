@@ -79,7 +79,7 @@ class ReflectionFile extends ReflectionBase
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionFile
 	 */
-	protected function parseStream(Stream $tokenStream, IReflection $parent = null)
+	public function parseStream(Stream $tokenStream, IReflection $parent = null)
 	{
 		$this->name = $tokenStream->getFileName();
 

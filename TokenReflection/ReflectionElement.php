@@ -71,7 +71,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 *
 	 * @var integer
 	 */
-	protected $startPosition;
+	public $startPosition;
 
 	/**
 	 * End position in the file token stream.
@@ -85,7 +85,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 *
 	 * @var array
 	 */
-	protected $docblockTemplates = array();
+	public $docblockTemplates = array();
 
 	/**
 	 * Constructor.
@@ -110,7 +110,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\Stream\StreamBase $tokenStream Token substream
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 */
-	final protected function parseStream(Stream $tokenStream, IReflection $parent = null)
+	final public function parseStream(Stream $tokenStream, IReflection $parent = null)
 	{
 		$this->fileName = $tokenStream->getFileName();
 
@@ -223,7 +223,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 *
 	 * @return array
 	 */
-	protected function getDocblockTemplates()
+	public function getDocblockTemplates()
 	{
 		return $this->docblockTemplates;
 	}
@@ -235,7 +235,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\Stream\StreamBase $tokenStream Token substream
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		// To be defined in child classes
 		return $this;
@@ -248,7 +248,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\IReflection $parent Parent reflection
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	protected function parseDocComment(Stream $tokenStream, IReflection $parent)
+	public function parseDocComment(Stream $tokenStream, IReflection $parent)
 	{
 		if ($this instanceof ReflectionParameter) {
 			$this->docComment = new ReflectionAnnotation($this);
@@ -327,7 +327,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	abstract protected function parse(Stream $tokenStream, IReflection $parent);
+	abstract public function parse(Stream $tokenStream, IReflection $parent);
 
 	/**
 	 * Parses the reflection object name.
@@ -335,7 +335,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\Stream\StreamBase $tokenStream Token substream
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	abstract protected function parseName(Stream $tokenStream);
+	abstract public function parseName(Stream $tokenStream);
 
 	/**
 	 * Parses child reflection objects from the token stream.
@@ -344,7 +344,7 @@ abstract class ReflectionElement extends ReflectionBase
 	 * @param \TokenReflection\Reflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	protected function parseChildren(Stream $tokenStream, IReflection $parent)
+	public function parseChildren(Stream $tokenStream, IReflection $parent)
 	{
 		// To be defined in child classes
 		return $this;

@@ -177,7 +177,7 @@ class ReflectionFunction extends ReflectionFunctionBase implements IReflectionFu
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\ParseException If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionFileNamespace) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parent object has to be an instance of TokenReflection\ReflectionFileNamespace.', Exception\ParseException::INVALID_PARENT);
@@ -195,7 +195,7 @@ class ReflectionFunction extends ReflectionFunctionBase implements IReflectionFu
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionFunction
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		return $this
 			->parseReturnsReference($tokenStream)

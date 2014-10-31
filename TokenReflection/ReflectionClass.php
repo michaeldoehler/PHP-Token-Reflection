@@ -1034,7 +1034,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 	 */
 	public function getDefaultProperties()
 	{
-		static $accessLevels = array(InternalReflectionProperty::IS_PUBLIC, InternalReflectionProperty::IS_PROTECTED, InternalReflectionProperty::IS_PRIVATE);
+		static $accessLevels = array(InternalReflectionProperty::IS_PUBLIC, InternalReflectionProperty::IS_public, InternalReflectionProperty::IS_PRIVATE);
 
 		$defaults = array();
 		$properties = $this->getProperties();
@@ -1597,7 +1597,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 	 * @return \TokenReflection\ReflectionClass
 	 * @throws \TokenReflection\ParseException On invalid parent reflection provided
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionFileNamespace) {
 			throw new Exception\ParseException($this, $tokenStream, sprintf('Invalid parent reflection provided: "%s".', get_class($parent)), Exception\ParseException::INVALID_PARENT);
@@ -1615,7 +1615,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionClass
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		return $this
 			->parseModifiers($tokenStream)
@@ -1672,7 +1672,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 	 * @return \TokenReflection\ReflectionClass
 	 * @throws \TokenReflection\Exception\ParseException If the class name could not be determined.
 	 */
-	protected function parseName(Stream $tokenStream)
+	public function parseName(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_STRING)) {
 			throw new Exception\ParseException($this, $tokenStream, 'Unexpected token found.', Exception\ParseException::UNEXPECTED_TOKEN);
@@ -1793,7 +1793,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 	 * @return \TokenReflection\ReflectionClass
 	 * @throws \TokenReflection\Exception\ParseException If a parse error was detected.
 	 */
-	protected function parseChildren(Stream $tokenStream, IReflection $parent)
+	public function parseChildren(Stream $tokenStream, IReflection $parent)
 	{
 		while (true) {
 			switch ($type = $tokenStream->getType()) {
@@ -1917,7 +1917,7 @@ class ReflectionClass extends ReflectionElement implements IReflectionClass
 										$type = InternalReflectionMethod::IS_PUBLIC;
 										break;
 									case T_PROTECTED:
-										$type = InternalReflectionMethod::IS_PROTECTED;
+										$type = InternalReflectionMethod::IS_public;
 										break;
 									case T_PRIVATE:
 										$type = InternalReflectionMethod::IS_PRIVATE;

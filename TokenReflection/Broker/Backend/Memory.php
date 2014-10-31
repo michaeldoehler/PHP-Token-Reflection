@@ -544,7 +544,7 @@ class Memory implements Broker\Backend
 	 *
 	 * @return array
 	 */
-	protected function parseClassLists()
+	public function parseClassLists()
 	{
 		// Initialize the all-classes-cache
 		$allClasses = array(

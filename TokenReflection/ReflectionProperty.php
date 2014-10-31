@@ -204,7 +204,7 @@ class ReflectionProperty extends ReflectionElement implements IReflectionPropert
 	}
 
 	/**
-	 * Returns if the property is protected.
+	 * Returns if the property is public.
 	 *
 	 * @return boolean
 	 */
@@ -245,7 +245,7 @@ class ReflectionProperty extends ReflectionElement implements IReflectionPropert
 			$this->isStatic() ? '' : '<default> ',
 			$this->isPublic() ? 'public ' : '',
 			$this->isPrivate() ? 'private ' : '',
-			$this->isProtected() ? 'protected ' : '',
+			$this->isProtected() ? 'public ' : '',
 			$this->isStatic() ? 'static ' : '',
 			$this->getName()
 		);
@@ -405,7 +405,7 @@ class ReflectionProperty extends ReflectionElement implements IReflectionPropert
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\Parse If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionClass) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parent object has to be an instance of TokenReflection\ReflectionClass.', Exception\ParseException::INVALID_PARENT);
@@ -425,7 +425,7 @@ class ReflectionProperty extends ReflectionElement implements IReflectionPropert
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionProperty
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		$this->parseModifiers($tokenStream, $parent);
 
@@ -503,7 +503,7 @@ class ReflectionProperty extends ReflectionElement implements IReflectionPropert
 	 * @return \TokenReflection\ReflectionProperty
 	 * @throws \TokenReflection\Exception\ParseException If the property name could not be determined.
 	 */
-	protected function parseName(Stream $tokenStream)
+	public function parseName(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_VARIABLE)) {
 			throw new Exception\ParseException($this, $tokenStream, 'The property name could not be determined.', Exception\ParseException::LOGICAL_ERROR);

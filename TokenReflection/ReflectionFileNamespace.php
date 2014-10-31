@@ -98,7 +98,7 @@ class ReflectionFileNamespace extends ReflectionElement
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\ParseException If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionFile) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parent object has to be an instance of TokenReflection\ReflectionFile.', Exception\ParseException::INVALID_PARENT);
@@ -114,7 +114,7 @@ class ReflectionFileNamespace extends ReflectionElement
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionFileNamespace
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		return $this->parseName($tokenStream);
 	}
@@ -126,7 +126,7 @@ class ReflectionFileNamespace extends ReflectionElement
 	 * @param \TokenReflection\IReflection $parent Parent reflection
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	protected function parseDocComment(Stream $tokenStream, IReflection $parent)
+	public function parseDocComment(Stream $tokenStream, IReflection $parent)
 	{
 		if (!$tokenStream->is(T_NAMESPACE)) {
 			$this->docComment = new ReflectionAnnotation($this);
@@ -143,7 +143,7 @@ class ReflectionFileNamespace extends ReflectionElement
 	 * @return \TokenReflection\ReflectionFileNamespace
 	 * @throws \TokenReflection\Exception\ParseException If the namespace name could not be determined.
 	 */
-	protected function parseName(Stream $tokenStream)
+	public function parseName(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_NAMESPACE)) {
 			$this->name = ReflectionNamespace::NO_NAMESPACE_NAME;
@@ -194,7 +194,7 @@ class ReflectionFileNamespace extends ReflectionElement
 	 * @return \TokenReflection\ReflectionFileNamespace
 	 * @throws \TokenReflection\Exception\ParseException If child elements could not be parsed.
 	 */
-	protected function parseChildren(Stream $tokenStream, IReflection $parent)
+	public function parseChildren(Stream $tokenStream, IReflection $parent)
 	{
 		static $skipped = array(T_WHITESPACE => true, T_COMMENT => true, T_DOC_COMMENT => true);
 		$depth = 0;

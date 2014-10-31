@@ -36,14 +36,14 @@ abstract class ReflectionBase implements IReflection
 	 *
 	 * @var string
 	 */
-	protected $name;
+	public $name;
 
 	/**
 	 * Docblock definition.
 	 *
 	 * @var \TokenReflection\ReflectionAnnotation|boolean
 	 */
-	protected $docComment;
+	public $docComment;
 
 	/**
 	 * Parsed docblock definition.
@@ -79,7 +79,7 @@ abstract class ReflectionBase implements IReflection
 	 * @param \TokenReflection\Stream\StreamBase $tokenStream Token substream
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 */
-	abstract protected function parseStream(Stream $tokenStream, IReflection $parent = null);
+	abstract public function parseStream(Stream $tokenStream, IReflection $parent = null);
 
 	/**
 	 * Returns the name (FQN).

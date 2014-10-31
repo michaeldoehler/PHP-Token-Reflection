@@ -365,7 +365,7 @@ class ReflectionParameter extends ReflectionElement implements IReflectionParame
 	 *
 	 * @return boolean
 	 */
-	protected function haveSiblingsDefalutValues()
+	public function haveSiblingsDefalutValues()
 	{
 		$function = $this->getDeclaringFunction();
 		if (null === $function) {
@@ -522,7 +522,7 @@ class ReflectionParameter extends ReflectionElement implements IReflectionParame
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\ParseException If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionFunctionBase) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parent object has to be an instance of TokenReflection\ReflectionFunctionBase.', Exception\ParseException::INVALID_PARENT);
@@ -549,7 +549,7 @@ class ReflectionParameter extends ReflectionElement implements IReflectionParame
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionParameter
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		return $this
 			->parseTypeHint($tokenStream)
@@ -619,7 +619,7 @@ class ReflectionParameter extends ReflectionElement implements IReflectionParame
 	 * @return \TokenReflection\ReflectionParameter
 	 * @throws \TokenReflection\Exception\ParseException If the parameter name could not be determined.
 	 */
-	protected function parseName(Stream $tokenStream)
+	public function parseName(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_VARIABLE)) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parameter name could not be determined.', Exception\ParseException::UNEXPECTED_TOKEN);

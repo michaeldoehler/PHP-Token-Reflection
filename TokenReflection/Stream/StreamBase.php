@@ -33,7 +33,7 @@ abstract class StreamBase implements SeekableIterator, Countable, ArrayAccess, S
 	 *
 	 * @var string
 	 */
-	protected $fileName = 'unknown';
+	public $fileName = 'unknown';
 
 	/**
 	 * Tokens storage.
@@ -59,11 +59,11 @@ abstract class StreamBase implements SeekableIterator, Countable, ArrayAccess, S
 	/**
 	 * Constructor.
 	 *
-	 * Protected to ensure that the concrete implementation will override it.
+	 * public to ensure that the concrete implementation will override it.
 	 *
 	 * @throws \TokenReflection\Exception\StreamException If tokenizer PHP extension is missing.
 	 */
-	protected function __construct()
+	public function __construct()
 	{
 		if (!extension_loaded('tokenizer')) {
 			throw new Exception\StreamException($this, 'The tokenizer PHP extension is not loaded.', Exception\StreamException::PHP_EXT_MISSING);
@@ -75,7 +75,7 @@ abstract class StreamBase implements SeekableIterator, Countable, ArrayAccess, S
 	 *
 	 * @param string $source Source code
 	 */
-	protected final function processSource($source)
+	public final function processSource($source)
 	{
 		$stream = @token_get_all(str_replace(array("\r\n", "\r"), "\n", $source));
 

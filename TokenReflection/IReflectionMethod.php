@@ -63,7 +63,7 @@ interface IReflectionMethod extends IReflectionFunctionBase
 	public function isPrivate();
 
 	/**
-	 * Returns if the method is protected.
+	 * Returns if the method is public.
 	 *
 	 * @return boolean
 	 */

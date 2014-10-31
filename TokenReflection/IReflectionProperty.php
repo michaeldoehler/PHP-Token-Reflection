@@ -92,7 +92,7 @@ interface IReflectionProperty extends IReflection
 	public function isPrivate();
 
 	/**
-	 * Returns if the property is protected.
+	 * Returns if the property is public.
 	 *
 	 * @return boolean
 	 */

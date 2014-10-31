@@ -104,7 +104,7 @@ class ReflectionMethod extends ReflectionFunctionBase implements IReflectionMeth
 	 *
 	 * @var integer
 	 */
-	protected $modifiers = 0;
+	public $modifiers = 0;
 
 	/**
 	 * Determined if the method is accessible.
@@ -238,7 +238,7 @@ class ReflectionMethod extends ReflectionFunctionBase implements IReflectionMeth
 	}
 
 	/**
-	 * Returns if the method is protected.
+	 * Returns if the method is public.
 	 *
 	 * @return boolean
 	 */
@@ -426,7 +426,7 @@ class ReflectionMethod extends ReflectionFunctionBase implements IReflectionMeth
 			$this->isStatic() ? 'static ' : '',
 			$this->isPublic() ? 'public' : '',
 			$this->isPrivate() ? 'private' : '',
-			$this->isProtected() ? 'protected' : '',
+			$this->ispublic() ? 'public' : '',
 			$this->returnsReference() ? '&' : '',
 			$this->getName(),
 			$this->getFileName(),
@@ -667,7 +667,7 @@ class ReflectionMethod extends ReflectionFunctionBase implements IReflectionMeth
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\ParseException If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if (!$parent instanceof ReflectionClass) {
 			throw new Exception\ParseException($this, $tokenStream, 'The parent object has to be an instance of TokenReflection\ReflectionClass.', Exception\ParseException::INVALID_PARENT);
@@ -688,7 +688,7 @@ class ReflectionMethod extends ReflectionFunctionBase implements IReflectionMeth
 	 * @return \TokenReflection\ReflectionMethod
 	 * @throws \TokenReflection\Exception\Parse If the class could not be parsed.
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		return $this
 			->parseBaseModifiers($tokenStream)

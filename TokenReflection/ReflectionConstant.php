@@ -241,7 +241,7 @@ class ReflectionConstant extends ReflectionElement implements IReflectionConstan
 	 * @return \TokenReflection\ReflectionElement
 	 * @throws \TokenReflection\Exception\ParseException If an invalid parent reflection object was provided.
 	 */
-	protected function processParent(IReflection $parent, Stream $tokenStream)
+	public function processParent(IReflection $parent, Stream $tokenStream)
 	{
 		if ($parent instanceof ReflectionFileNamespace) {
 			$this->namespaceName = $parent->getName();
@@ -262,7 +262,7 @@ class ReflectionConstant extends ReflectionElement implements IReflectionConstan
 	 * @param \TokenReflection\IReflection $parent Parent reflection
 	 * @return \TokenReflection\ReflectionConstant
 	 */
-	protected function parseDocComment(Stream $tokenStream, IReflection $parent)
+	public function parseDocComment(Stream $tokenStream, IReflection $parent)
 	{
 		$position = $tokenStream->key() - 1;
 		while ($position > 0 && !$tokenStream->is(T_CONST, $position)) {
@@ -285,7 +285,7 @@ class ReflectionConstant extends ReflectionElement implements IReflectionConstan
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionConstant
 	 */
-	protected function parse(Stream $tokenStream, IReflection $parent)
+	public function parse(Stream $tokenStream, IReflection $parent)
 	{
 		if ($tokenStream->is(T_CONST)) {
 			$tokenStream->skipWhitespaces(true);
@@ -307,7 +307,7 @@ class ReflectionConstant extends ReflectionElement implements IReflectionConstan
 	 * @return \TokenReflection\ReflectionConstant
 	 * @throws \TokenReflection\Exception\ParseReflection If the constant name could not be determined.
 	 */
-	protected function parseName(Stream $tokenStream)
+	public function parseName(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_STRING)) {
 			throw new Exception\ParseException($this, $tokenStream, 'The constant name could not be determined.', Exception\ParseException::LOGICAL_ERROR);

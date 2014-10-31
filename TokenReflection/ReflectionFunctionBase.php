@@ -27,7 +27,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 *
 	 * @var string
 	 */
-	protected $namespaceName;
+	public $namespaceName;
 
 	/**
 	 * Determines if the function/method returns its value as reference.
@@ -41,7 +41,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 *
 	 * @var array
 	 */
-	protected $parameters = array();
+	public $parameters = array();
 
 	/**
 	 * Static variables defined within the function/method.
@@ -234,7 +234,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 *
 	 * @throws \TokenReflection\Exception\RuntimeException When called on a ReflectionFunction instance.
 	 */
-	protected final function aliasParameters()
+	public final function aliasParameters()
 	{
 		if (!$this instanceof ReflectionMethod) {
 			throw new Exception\RuntimeException('Only method parameters can be aliased.', Exception\RuntimeException::UNSUPPORTED, $this);
@@ -252,7 +252,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 * @return \TokenReflection\ReflectionFunctionBase
 	 * @throws \TokenReflection\Exception\ParseException If could not be determined if the function\method returns its value by reference.
 	 */
-	final protected function parseReturnsReference(Stream $tokenStream)
+	final public function parseReturnsReference(Stream $tokenStream)
 	{
 		if (!$tokenStream->is(T_FUNCTION)) {
 			throw new Exception\ParseException($this, $tokenStream, 'Could not find the function keyword.', Exception\ParseException::UNEXPECTED_TOKEN);
@@ -279,7 +279,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 * @return \TokenReflection\ReflectionMethod
 	 * @throws \TokenReflection\Exception\ParseException If the class name could not be determined.
 	 */
-	final protected function parseName(Stream $tokenStream)
+	final public function parseName(Stream $tokenStream)
 	{
 		$this->name = $tokenStream->getTokenValue();
 
@@ -295,7 +295,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 * @param \TokenReflection\IReflection $parent Parent reflection object
 	 * @return \TokenReflection\ReflectionElement
 	 */
-	final protected function parseChildren(Stream $tokenStream, IReflection $parent)
+	final public function parseChildren(Stream $tokenStream, IReflection $parent)
 	{
 		return $this
 			->parseParameters($tokenStream)
@@ -309,7 +309,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 * @return \TokenReflection\ReflectionFunctionBase
 	 * @throws \TokenReflection\Exception\ParseException If parameters could not be parsed.
 	 */
-	final protected function parseParameters(Stream $tokenStream)
+	final public function parseParameters(Stream $tokenStream)
 	{
 		if (!$tokenStream->is('(')) {
 			throw new Exception\ParseException($this, $tokenStream, 'Could find the start token.', Exception\ParseException::UNEXPECTED_TOKEN);
@@ -344,7 +344,7 @@ abstract class ReflectionFunctionBase extends ReflectionElement implements IRefl
 	 * @return \TokenReflection\ReflectionFunctionBase
 	 * @throws \TokenReflection\Exception\ParseException If static variables could not be parsed.
 	 */
-	final protected function parseStaticVariables(Stream $tokenStream)
+	final public function parseStaticVariables(Stream $tokenStream)
 	{
 		$type = $tokenStream->getType();
 		if ('{' === $type) {
